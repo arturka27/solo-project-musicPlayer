@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "solo-project-musicPlayer",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
