@@ -10,7 +10,6 @@ exports.registration = async (req, res) => {
     if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
       return res.status(400).json({ message: "Заполните все поля" });
     }
-
     const userInDB = await UserServices.getUserByEmail(email);
     // проверяем наличе в бд по email
     if (userInDB) {
@@ -22,7 +21,6 @@ exports.registration = async (req, res) => {
       if (user) {
         delete user.password;
         res.locals.user = user;
-
         //console.log(user, "user without password");
         const { accessToken, refreshToken } = generateTokens({ user });
         res

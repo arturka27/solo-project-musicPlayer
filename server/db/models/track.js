@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Track.init({
     userId: {
+      type: DataTypes.INTEGER,
       references: {
         model: 'Users',
         key: 'id'

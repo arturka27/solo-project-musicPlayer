@@ -1,9 +1,10 @@
-const TrackServices = require("../services/UserServices");
+const TrackServices = require('../services/TrackServices')
+const upload = require("../utils/upload");
 
 exports.getTracks = async (req, res) => {
   try {
-    const track = await TrackServices.getAllProperties(req.query);
-    res.status(200).json({ message: "success", track });
+    const tracks = await TrackServices.getAllTracks(req.query);
+    res.status(200).json({ message: "success", tracks });
   } catch ({ message }) {
     res.status(500).json({ error: message });
   }
@@ -24,7 +25,7 @@ exports.addTrack = async (req, res) => {
   try {
     const userId = res.locals.user.id;
     const { title, artist, album } = req.body;
-    const pathTrack = "/track/" + req.file.filename;
+    const pathTrack = "/tracks/" + req.file.filename;
 
     const track = await TrackServices.createTrack({
       userId,
@@ -50,7 +51,7 @@ exports.changeTrack = async (req, res) => {
     let pathTrack = track.filePath;
 
     if (req.file) {
-      pathTrack = "/track/" + req.file?.filename;
+      pathTrack = "/tracks/" + req.file?.filename;
     }
     if (track) {
       track = await TrackServices.updateTrack({
@@ -86,3 +87,5 @@ exports.destroyTrack = async (req, res) => {
     res.status(500).json({ error: message });
   }
 };
+
+upload.single()

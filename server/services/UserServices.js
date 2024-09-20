@@ -7,6 +7,7 @@ class UserServices {
 
   static getUserByEmail = async (email) => {
     const user = await User.findOne({ where: { email } });
+
     return user ? user.get() : null;
   };
 
