@@ -9,6 +9,6 @@ router.use("/tracks", tracksRouter);
 router.use("/auth", authRouter);
 
 // должна быть в конце
-router.use("*", errorRouter);
+// router.use("*", errorRouter);
 
 module.exports = router;

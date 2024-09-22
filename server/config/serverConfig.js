@@ -1,7 +1,7 @@
-const express = require('express');
-const removeHeader = require('../middleware/removeHeader');
-const cookieParser = require('cookie-parser');
-const path = require('path');
+const express = require("express");
+const removeHeader = require("../middleware/removeHeader");
+const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const serviceConfig = (app) => {
     //middleware чаще всего работает с req

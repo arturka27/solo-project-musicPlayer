@@ -1,9 +1,10 @@
 import React from 'react';
+import TrackPage from '../track/TrackPage';
 
 function HomePage(): JSX.Element {
   return (
     <div className="HomePage">
-        HOME PAGE
+        <TrackPage/>
     </div>
   );
 }

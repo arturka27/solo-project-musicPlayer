@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosRequest, setAccessToken } from "../../features/api/axiosinstance";
 import { AppContext } from "../../app/provider/AppContext";
+import './RegLog.css'
 
 function RegistrationPage() {
   const { setUser } = useContext(AppContext);
@@ -60,7 +61,7 @@ function RegistrationPage() {
   };
 
   return (
-    <div className="mainForm">
+    <div className="RegLog">
       <form onSubmit={onHandleSubmit} className="regLogForm">
         <h2>Создать профиль</h2>
         <input
@@ -106,7 +107,7 @@ function RegistrationPage() {
             required
           />
           <button
-            className="eye-button"
+            className="eye-button-auth"
             type="button"
             onClick={() => setShown((prev) => !prev)}
           >
@@ -131,7 +132,7 @@ function RegistrationPage() {
           </button> */}
         </label>
         <div className="error">{error && <p>{error}</p>}</div>
-        <button className="mainFormBtn" type="submit">
+        <button className="btn" type="submit">
           Зарегистрироваться
         </button>
       </form>

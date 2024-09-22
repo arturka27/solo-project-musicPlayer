@@ -8,6 +8,7 @@ import { AppContext } from './provider/AppContext';
 import AppRouters from './provider/AppRouters';
 import { User } from '../entities/User/types/user';
 import { axiosRequest, setAccessToken } from '../features/api/axiosinstance';
+import HeaderPage from '../widgets/navbar/HeaderPage';
 
 type TrackResponse = {
   message: string;
@@ -15,33 +16,31 @@ type TrackResponse = {
 };
 
 function App(): JSX.Element {
-
   const [tracks, setTracks] = useState<Track[]>([]);
-  const [user, setUser] = useState<User | undefined>(undefined)
+  const [user, setUser] = useState<User | undefined>(undefined);
 
   const checkUser = async () => {
     try {
-      const response = await axiosRequest.get("/tokens/refresh");
+      const response = await axiosRequest.get('/tokens/refresh');
       if (response.status === 200) {
         setAccessToken(response.data.accessToken);
         setUser(response.data.user);
       }
-    } catch ({ response } : Response | any) {
+    } catch ({ response }: Response | any) {
       console.log(response.data.message);
     }
   };
 
   const getAllTracks = async () => {
     try {
-      const response : AxiosResponse<TrackResponse> = await axiosRequest.get("/tracks");
+      const response: AxiosResponse<TrackResponse> = await axiosRequest.get('/tracks');
       if (response.status === 200) {
         setTracks(response.data.tracks);
       }
-    } catch ({ response } : Response | any) {
+    } catch ({ response }: Response | any) {
       console.log(response.data.message);
     }
-
-  }
+  };
 
   useEffect(() => {
     getAllTracks();
@@ -53,17 +52,15 @@ function App(): JSX.Element {
       tracks,
       setTracks,
       user,
-      setUser
+      setUser,
     }),
     [tracks, user],
   );
 
-
   return (
     <AppContext.Provider value={state}>
-      <h1>APP</h1>
+      <HeaderPage/>
       <AppRouters />
-      {tracks && tracks.map((track) => <TrackItem track={track} key={track.id} />)}
     </AppContext.Provider>
   );
 }

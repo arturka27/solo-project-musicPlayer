@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../app/provider/AppContext";
 import { axiosRequest, setAccessToken } from "../../features/api/axiosinstance";
+import './RegLog.css'
 
 function AuthorizationPage() {
 
@@ -36,7 +37,7 @@ const { setUser } = useContext(AppContext)
       if (data.message === "success") {
         setUser(data.user);
         setAccessToken(data.accessToken);
-        navigate("/properties");
+        navigate("/");
         
         return;
       }
@@ -48,8 +49,7 @@ const { setUser } = useContext(AppContext)
 
   return (
     <>
-      <div className="mainForm">
-
+      <div className="RegLog">
         <form onSubmit={onHadleSubmit} className="regLogForm">
         <h2>Авторизация</h2>
           <input
@@ -67,13 +67,13 @@ const { setUser } = useContext(AppContext)
             placeholder="Пароль"
             required
           />
-          <button className="eye-button" type="button" onClick={() => setShown((prev) => !prev)}>
+          <button className="eye-button-auth" type="button" onClick={() => setShown((prev) => !prev)}>
           👀
           </button>
           </label>
 
           <div className="error">{error && <p>{error}</p>}</div>
-          <button type="submit" className="btn btn-outline-success">
+          <button type="submit" className="btn">
             Войти
           </button>
         </form>
