@@ -8,17 +8,35 @@ type AppProps = { setActive: Dispatch<SetStateAction<boolean>> };
 
 function TrackAddForm({ setActive }: AppProps): JSX.Element {
   const { setTracks, tracks } = useContext(AppContext);
-
+  const [error, setError] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null | any>(null);
   const [title, setTitle] = useState<string>('');
   const [artist, setArtist] = useState<string>('');
   const [album, setAlbum] = useState<string>('');
   const navigate = useNavigate();
 
+  function validation(title: string, artist: string, album: string):boolean {
+    if (
+      title.trim() === '' ||
+      artist.trim() === '' ||
+      album.trim() === ''
+    ) {
+      setError('Заполните все поля');
+      return false;
+    }
+    if(!selectedFile) {
+      setError('Выберите музыкальный файл');
+      return false;
+    }
+    return true;
+  }
+
   const onHandleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if(!validation(title, artist, album)) {
+      return;
+    }
     try {
-      if (!selectedFile) return;
 
       const formData = new FormData();
       formData.append('title', title);
@@ -75,6 +93,7 @@ function TrackAddForm({ setActive }: AppProps): JSX.Element {
           name=""
           id=""
         />
+        <div className="error">{error && <p>{error}</p>}</div>
         <button className='btn' type="submit">добавить</button>
       </form>
     </div>

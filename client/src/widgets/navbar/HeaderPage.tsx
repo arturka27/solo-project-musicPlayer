@@ -1,14 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './HeaderPage.css';
 import { AppContext } from '../../app/provider/AppContext';
 function HeaderPage() {
-  const [showCategories, setShowCategories] = useState(false);
   const { user } = useContext(AppContext);
 
-  const onHandleShow = () => {
-    setShowCategories((prev) => !prev);
-  };
   return (
     <div className="HeaderPage">
       <NavLink className="navlinkHome" to="/">
@@ -21,7 +17,7 @@ function HeaderPage() {
       </NavLink>
 
       <h1>
-        <h1>~Elbrus Music~</h1>
+        <h1 className='main-title'>~Elbrus Music~</h1>
       </h1>
       {user ? (
         <div className="user-block">

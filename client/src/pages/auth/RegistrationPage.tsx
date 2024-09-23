@@ -1,60 +1,61 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { axiosRequest, setAccessToken } from "../../features/api/axiosinstance";
-import { AppContext } from "../../app/provider/AppContext";
-import './RegLog.css'
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { axiosRequest, setAccessToken } from '../../features/api/axiosinstance';
+import { AppContext } from '../../app/provider/AppContext';
+import './RegLog.css';
 
 function RegistrationPage() {
   const { setUser } = useContext(AppContext);
 
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirm, setConfirm] = useState<string>("");
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirm, setConfirm] = useState<string>('');
   const [shown, setShown] = useState<boolean>(false);
 
-
-
-  function validation(name : string, email: string, password: string, confirm: string) {
+  function validation(name: string, email: string, password: string, confirm: string) {
     if (
-      name.trim() === "" ||
-      email.trim() === "" ||
-      password.trim() === "" ||
-      confirm.trim() === ""
+      name.trim() === '' ||
+      email.trim() === '' ||
+      password.trim() === '' ||
+      confirm.trim() === ''
     ) {
-      setError("Заполните поле");
+      setError('Заполните поле');
+      return false;
+    }
+    if (password.trim().length < 4) {
+      setError('Пароль не может быть короче 4-х символов');
       return false;
     }
     if (password.trim() !== confirm.trim()) {
-      setError("Пароли не совпадают");
+      setError('Пароли не совпадают');
       return false;
     }
     return true;
   }
 
-  const onHandleSubmit = async (event : React.FormEvent) => {
+  const onHandleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!validation(name, email, password, confirm)) {
       return;
     }
 
     try {
-      const response = await axiosRequest.post("/auth/registration", {
+      const response = await axiosRequest.post('/auth/registration', {
         name: name.trim(),
         email: email.trim(),
         password: password.trim(),
       });
 
-      
-      if (response.data.message === "success") {
+      if (response.data.message === 'success') {
         setAccessToken(response.data.accessToken);
         setUser(response.data.user);
-        navigate("/");
+        navigate('/');
         return;
       }
-    } catch ({response}: Response | any) {
+    } catch ({ response }: Response | any) {
       console.log(response);
       setError(response.data.message);
     }
@@ -100,7 +101,7 @@ function RegistrationPage() {
         /> */}
         <label className="password-label">
           <input
-            type={shown ? "text" : "password"}
+            type={shown ? 'text' : 'password'}
             onChange={({ target }) => setPassword(target.value)}
             className="maininput"
             placeholder="Пароль"
@@ -113,16 +114,16 @@ function RegistrationPage() {
           >
             👀
           </button>
-        </label>{" "}
+        </label>{' '}
         <label className="password-label">
-        <input
-          required
-          type={shown ? "text" : "password"}
-          className="maininput"
-          placeholder="Подтвердите пароль"
-          value={confirm}
-          onChange={(event) => setConfirm(event.target.value)}
-        />
+          <input
+            required
+            type={shown ? 'text' : 'password'}
+            className="maininput"
+            placeholder="Подтвердите пароль"
+            value={confirm}
+            onChange={(event) => setConfirm(event.target.value)}
+          />
           {/* <button
             className="eye-button"
             type="button"
