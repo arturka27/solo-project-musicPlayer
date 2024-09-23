@@ -1,0 +1,24 @@
+
+.HeaderPage {
+    padding:5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--el-color-3);
+    box-shadow: 0px 10px 20px black;
+    border: 1px solid;
+}
+
+.user-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-title {
+    padding-left: 170px;
+}
+
+.logo:hover {
+    box-shadow: 0px 10px 50px var(--el-color-1);
+    transition: .4s linear;
+}

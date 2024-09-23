@@ -1,0 +1,64 @@
+.RegLog {
+  display: flex;
+  align-items: center;
+  /* background-color: var(--el-color-3); */
+  min-height: 598px;
+}
+
+.RegLog form, .confirmLogout{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.RegLog form input {
+  background-color: var(--el-color-2);
+  color: var(--el-color-1);
+  margin: 5px 0;
+  font-size: 30px;
+  outline: none;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+}
+
+.RegLog form input::placeholder {
+  color: rgba(255, 255, 255, 0.445);
+}
+
+.btn {
+  font-size: 20px;
+  margin: 5px;
+  padding: 10px;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid black;
+  text-decoration: none;
+}
+
+.btn:hover {
+
+  cursor: pointer;
+  color: var(--el-color-1);
+  background-color: var(--el-color-2);
+}
+
+.eye-button-auth {
+    position: absolute;
+    border: none;
+    top: 6px;
+    right: 5px;
+    height: 0;
+    font-size: 25px;
+    background-color: var(--el-color-2);
+}
+
+.eye-button-auth {
+    cursor: pointer;
+}
+
+.password-label {
+    position: relative;
+}

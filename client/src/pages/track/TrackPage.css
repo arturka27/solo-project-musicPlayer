@@ -1,0 +1,23 @@
+:root {
+    --bd-color: #D890FF;
+    --btn-color: #7A2EA4;
+    --btn-hover-color: #FF8A8A	;
+    --bg-page-color: #B365D4;
+  }
+
+
+
+.TrackPage {
+    min-height: 598px;
+    align-items: center;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--el-color-2)
+}
+
+.TrackItemBlock {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

@@ -1,0 +1,85 @@
+:root {
+    --bd-color: #D890FF;
+    --btn-color: #7A2EA4;
+    --btn-hover-color: #FF8A8A	;
+    --bg-page-color: #B365D4;
+  }
+
+
+.TrackItem {
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 5px 0;
+    display: flex;
+    width: 100%;
+    height: 30px;
+    justify-content: space-between;
+    background-color: var(--el-color-3);
+    align-items: center;
+}
+
+.play-button, .stop-button{
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    /* отображаем курсор в виде руки при наведении; некоторые  
+     * считают, что необходимо оставлять стрелочный вид для кнопок 
+     */
+    cursor: pointer;
+    font-size: 30px
+    
+}
+
+.setting-block {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.info-block {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.edit .btn-update, .edit .btn-delete {
+    padding: 5px ;
+    width: 160px;
+}
+
+.edit .btn-delete:hover {
+    color: aliceblue;
+    background-color: #750000;
+}
+
+.edit {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.title {
+    margin-left: 10px;
+    text-align: left;
+    width: 150px;
+}
+
+.artist {
+    text-align: left;
+    width: 10px;
+
+}
+
+.pla-stop {
+    margin-left: 0;
+}
+
+.album {
+    text-align: left;
+    width: 50px;
+}
